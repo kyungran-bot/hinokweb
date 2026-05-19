@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hinok - Premium Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Cormorant Garamond, Cormorant Infant -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Cormorant+Infant:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@500&display=swap" rel="stylesheet">
+    <!-- Spoqa Han Sans Neo 대체 (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+</head>
+
+<body>
+    <!-- 배경 음악 레이어 -->
+    <audio id="bgm" src="bgm.mp3" loop preload="auto" autoplay></audio>
+
+    <!-- 배경 이미지 및 GIF 레이어 -->
+    <div class="bg-layers">
+        <div class="bg-layer gif-bg"></div>
+        <div class="bg-layer hinok-base"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- 상단 고정 네비게이션 (아트워크 트리거 방식) -->
+    <nav class="global-nav">
+        <div class="menu-trigger" id="menu-trigger">
+            <div class="leaf-icon">
+                <img src="leap.svg" alt="leaf icon">
+            </div>
+            <span class="trigger-text">i want more</span>
+        </div>
+        <div class="nav-dropdown">
+            <ul class="dropdown-list">
+                <li><a href="brand.html" class="dropdown-item">브랜드 설명</a></li>
+                <li><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
+                <li><a href="artist.html" class="dropdown-item">작가 소개</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 커스텀 커서 시스템 -->
+    <div class="cursor-trail"></div>
+    <div class="custom-cursor">
+        <div class="cursor-piece main p1"></div>
+        <div class="cursor-piece main p2"></div>
+        <div class="cursor-piece follower p3"></div>
+        <div class="cursor-piece follower p4"></div>
+        <div class="cursor-piece follower p5"></div>
+        <div class="cursor-piece follower p6"></div>
+    </div>
+
+    <!-- 빛과 노이즈 효과 -->
+    <div class="light-effect"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- 스크롤 컨테이너 -->
+    <div class="scroll-container">
+        <!-- 섹션 1: 메인 히어로 -->
+        <section class="section hero-section">
+            <div class="hero-content">
+                <div class="parallax-layer parallax-center">
+                    <img src="image 155 whit 3.png" alt="Hinok Logo" class="logo">
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>scroll</span>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 전시 콘텐츠 -->
+        <section class="section content-section">
+            <!-- 1. 상단 인트로 (중앙 정렬됨) -->
+            <div class="figma-layout">
+                <div class="intro-text-top">
+                    본 전시는 희녹이 바라보는 편백의 순환 가치를 바탕으로, 자연 원료가 수집되고 추출되어 제품으로 활용된 뒤 <br>
+                    다시 자연으로 환원되는 흐름을 감각적으로 풀어낸 인터랙티브 전시입니다.<br>
+                    관람자는 빛, 소리, 촉감, 향, 흙의 감각을 따라 이동하며 편백 숲의 순환 과정을 추상적으로 경험합니다.
+                </div>
+            </div>
+
+            <!-- 2. 중앙 순환 구조 (가로폭 100% 사용) -->
+            <div class="circulation-wrap">
+                <img src="tree.png" alt="Mountain Background" class="tree-bg">
+                <div class="gradient-overlay-tree"></div>
+
+                <div class="interaction-circles">
+                    <div class="ellipse e114"></div>
+                    <div class="ellipse e113"></div>
+                    <div class="ellipse e112"></div>
+                    <div class="ellipse e111"></div>
+                    <div class="ellipse e110"></div>
+
+                    <!-- 순환하는 빛의 점들 (순차적 출발) -->
+                    <div class="orbit-dot d1"></div>
+                    <div class="orbit-dot d2"></div>
+                    <div class="orbit-dot d3"></div>
+
+                    <div class="label pruning">Pruning</div>
+                    <div class="label extraction">Extraction</div>
+                    <div class="label sensation">Sensation</div>
+                    <div class="label circulation">Circulation</div>
+                </div>
+            </div>
+
+            <!-- 3. 하단 상세 내용 (다시 중앙 정렬됨) -->
+            <div class="figma-layout">
+                <div class="intro-text-bottom">
+                    전시는 편백의 생애를 직선적인 생산 과정이 아닌, 다시 숲으로 돌아가는 순환의 구조로 바라봅니다.<br>
+                    관람자는 각 인터랙션을 통해 편백이 지닌 향, 소리, 질감, 움직임을 감각하며 자연과 희녹, 그리고 환원의 관계를 경험합니다.
+                </div>
+
+                <div class="exhibition-flow">
+                    <div class="flow-title-wrap">
+                        <img src="leap.png" alt="Leap Decoration" class="leap-bg">
+                        <h2 class="flow-title">Exhibition Flow</h2>
+                    </div>
+
+                    <!-- 지그재그 경로를 포함한 플로우 컨테이너 -->
+                    <div class="flow-path-container">
+                        <!-- 경로를 따라 움직이는 빛의 점 -->
+                        <div class="moving-dot"></div>
+
+                        <!-- 배경 연결선 레이어 -->
+                        <div class="path-lines">
+                            <div class="line v98"></div>
+                            <div class="curve c115"></div>
+                            <div class="line v99"></div>
+                            <div class="curve c116"></div>
+                            <div class="line v100"></div>
+                            <div class="curve c117"></div>
+                            <div class="line v101"></div>
+                        </div>
+
+                        <!-- 실제 단계 내용 -->
+                        <div class="flow-steps-grid">
+                            <div class="flow-step step1 left">
+                                <span class="point p110"></span>
+                                <div class="step-content">
+                                    <p class="step-label">Step into the Hinoki Forest</p>
+                                    <p class="step-desc">숲을 거닐며 자연의 생장을 위한 가지치기 이후<br>
+                                        빛이 스며드는 순간을 경험합니다.</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-step step2 right">
+                                <span class="point p119"></span>
+                                <div class="step-content">
+                                    <p class="step-label">Echoes of the Nature</p>
+                                    <p class="step-desc">편백 잎을 만지고 겹쳐지는 자연의 소리와 감각을 느낍니다</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-step step3 left">
+                                <span class="point p122"></span>
+                                <div class="step-content">
+                                    <p class="step-label">Extracting Hinoki Water</p>
+                                    <p class="step-desc">숲의 끝에 있는 편백나무 밑동과 물의 파장을 통한 시각적 체험으로 <br>
+                                        편백수 추출과정을 관람해 보세요.</p>
+                                </div>
+                            </div>
+
+                            <!-- 모든 변곡점 포인트 (텍스트 없음) -->
+                            <span class="point p_top_right"></span>
+                            <span class="point p_left_end"></span>
+                            <span class="point p_mid_right"></span>
+                            <span class="point p_right_end"></span>
+
+                            <div class="flow-step step4 center">
+                                <span class="point p121"></span>
+                                <div class="step-content">
+                                    <p class="step-label">Return to Nature</p>
+                                    <p class="step-desc special">바닥의 흙과 퇴비의 감각을 통해 편백이 <br>
+                                        다시 자연으로 돌아가는 흐름을 경험합니다.<br><br>
+                                        숲을 이루는 요소들을 채집해 키트에 넣어 가져가셔도 좋습니다.</p>
+                                </div>
+                                
+                                <!-- Footer / Next Page Link -->
+                                <footer class="site-footer">
+                                    <a href="notice.html" class="treering-link">
+                                        <img src="treering.svg" alt="Tree Ring" class="treering-img">
+                                        <span class="click-here">click here</span>
+                                    </a>
+                                    
+                                    <p class="copyright">
+                                        EWHA 2026 MAYDAY Exhibition<br>
+                                        Media Art_Team hinok
+                                    </p>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1642 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: #0d1e20;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* ========================================================== */
+/* [배경 및 효과 시스템] */
+/* ========================================================== */
+
+.bg-layers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-layer.gif-bg {
+    background-image: url('bg.gif');
+    opacity: 1.0;
+}
+
+.bg-layer.hinok-base {
+    background-image: url('bg.png');
+    opacity: 0.6;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+}
+
+.light-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 3;
+    background: radial-gradient(circle 400px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(150, 255, 200, 0.1) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 80%);
+    mix-blend-mode: color-dodge;
+    animation: shimmerLight 4s ease-in-out infinite alternate;
+}
+
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+}
+
+@keyframes shimmerLight {
+    0% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.4;
+        transform: scale(1.05);
+    }
+}
+
+/* ========================================================== */
+/* [밝은 배경 모드 - 커서 및 네비게이션 반전] */
+body.light-mode {
+    background-color: #FAFAFA !important;
+    color: #17120f !important;
+}
+
+/* 불필요한 이전 커서 숨김 규칙 제거됨 */
+
+body.light-mode .trigger-text {
+    color: #17120f !important;
+    text-shadow: none;
+}
+
+body.light-mode .trigger-text {
+    color: #17120f !important;
+    text-shadow: none;
+}
+
+body.light-mode .leaf-icon img {
+    filter: brightness(0.2) contrast(1.2);
+    /* 나뭇잎도 어둡게 */
+}
+
+body.light-mode .nav-dropdown {
+    background: rgba(250, 250, 250, 0.8);
+    /* 밝은 드롭다운 배경 */
+    backdrop-filter: blur(10px);
+}
+
+body.light-mode .dropdown-item {
+    color: #17120f !important;
+}
+
+.sub-bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    /* 배경색보다 위로 올리기 */
+}
+
+/* ========================================================== */
+/* [기존 커서 시스템 유지] */
+/* ========================================================== */
+
+/* ========================================================== */
+/* [스크롤 시스템] */
+/* ========================================================== */
+
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    z-index: 10;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.section {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* ========================================================== */
+/* [섹션 1: 히어로] */
+/* ========================================================== */
+
+.hero-section {
+    background: transparent;
+    z-index: 15;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to top, #061E23 0%, rgba(6, 30, 35, 0.8) 40%, transparent 100%);
+    z-index: 16;
+}
+
+.logo {
+    height: 38px;
+    width: auto;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
+    z-index: 20;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    animation: bounce 2s infinite;
+    z-index: 100;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(-50%, 8px);
+        opacity: 1.0;
+    }
+}
+
+/* ========================================================== */
+/* [섹션 2: 전시 콘텐츠] */
+/* ========================================================== */
+
+.content-section {
+    height: auto;
+    min-height: 5000px;
+    background-color: #061E23;
+    z-index: 11;
+    position: relative;
+    display: block;
+    overflow-x: hidden;
+}
+
+.figma-layout {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #FFFFFF;
+}
+
+.intro-text-top {
+    padding: 200px 20px 0;
+    font-size: 18px;
+    line-height: 2.2;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.circulation-wrap {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 750px;
+    margin: 150px 0;
+    overflow: hidden;
+}
+
+.tree-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+}
+
+.gradient-overlay-tree {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #061E23 0%, rgba(6, 30, 35, 0.1) 40%, #061D23 100%);
+    transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.interaction-circles {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ellipse {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    filter: blur(1px);
+}
+
+.e110 {
+    width: 18px;
+    height: 18px;
+    background: #FEFEFE;
+    border: none;
+}
+
+.e111 {
+    width: 40px;
+    height: 40px;
+    animation: rotateInner 15s linear infinite;
+}
+
+.e112 {
+    width: 80px;
+    height: 80px;
+    animation: rotateInner 25s linear infinite reverse;
+}
+
+.e113 {
+    width: 150px;
+    height: 150px;
+    animation: rotateInner 40s linear infinite;
+}
+
+.e114 {
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: rotateInner 60s linear infinite reverse;
+}
+
+@keyframes rotateInner {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.orbit-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    animation: orbitMove 25s linear infinite, orbitFadeIn 2s forwards;
+}
+
+.orbit-dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(from 270deg at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
+    -webkit-mask: radial-gradient(transparent 49.5%, black 49.7%, black 49.9%, transparent 50%);
+    mask: radial-gradient(transparent 49.5%, black 49.7%, black 49.9%, transparent 50%);
+    filter: blur(0.8px);
+    transform: rotate(0deg);
+}
+
+.orbit-dot.d1 {
+    width: 350px;
+    height: 350px;
+    margin-top: -175px;
+    margin-left: -175px;
+    animation-delay: 0s, 0s;
+}
+
+.orbit-dot.d1::after {
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+}
+
+.orbit-dot.d2 {
+    width: 150px;
+    height: 150px;
+    margin-top: -75px;
+    margin-left: -75px;
+    animation-delay: 2.5s, 2.5s;
+}
+
+.orbit-dot.d2::after {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.orbit-dot.d3 {
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+    margin-left: -40px;
+    animation-delay: 5s, 5s;
+}
+
+.orbit-dot.d3::after {
+    width: 5px;
+    height: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.orbit-dot::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(0.5px);
+}
+
+@keyframes orbitMove {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbitFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.label {
+    position: absolute;
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #FFFFFF;
+    text-align: center;
+    letter-spacing: 2px;
+    z-index: 10;
+}
+
+.pruning {
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.extraction {
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sensation {
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.circulation {
+    left: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.intro-text-bottom {
+    padding: 0 20px;
+    margin-bottom: 80px;
+    font-size: 18px;
+    line-height: 2.2;
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* ========================================================== */
+/* [Exhibition Flow - 지그재그 경로] */
+/* ========================================================== */
+
+.exhibition-flow {
+    position: relative;
+    width: 100%;
+    padding-bottom: 350px;
+}
+
+.flow-title-wrap {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.leap-bg {
+    position: absolute;
+    width: 400px;
+    opacity: 0.15;
+    filter: grayscale(1) brightness(0.8);
+}
+
+.flow-title {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 36px;
+    letter-spacing: 6px;
+    z-index: 2;
+}
+
+/* 지그재그 경로 컨테이너 */
+.flow-path-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 1100px;
+}
+
+/* 경로를 따라 움직이는 빛의 점 */
+.moving-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: 10;
+    filter: blur(0.5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.5);
+
+    /* 지그재그 경로 정의 (중앙에서 끝나도록 수정) */
+    offset-path: path('M 0 14 H 900 A 110 110 0 0 1 900 234 H 0 A 110 110 0 0 0 0 454 H 900 A 110 110 0 0 1 900 674 H 450');
+    offset-rotate: auto;
+    animation: moveAlongPath 40s linear infinite;
+    /* 속도 2배 감속 (20s -> 40s) */
+}
+
+@keyframes moveAlongPath {
+    from {
+        offset-distance: 0%;
+    }
+
+    to {
+        offset-distance: 100%;
+    }
+}
+
+/* 경로 선 스타일 */
+.path-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.line {
+    position: absolute;
+    background: #ffffff;
+    /* 완전 불투명 하얀색 */
+    height: 1.5px;
+    /* 선명도를 위해 약간 두껍게 */
+}
+
+.curve {
+    position: absolute;
+    border: 1.5px solid #ffffff;
+    /* 완전 불투명 하얀색 */
+    border-radius: 50%;
+    /* 완전한 원형 기준 */
+    width: 220px;
+    height: 220px;
+}
+
+/* 피그마 데이터 기반 배치 - 선명한 반원 연결 */
+.v98 {
+    top: 14px;
+    left: 0;
+    width: calc(100% + 1px);
+    /* 빈틈 방지를 위해 1px 연장 */
+}
+
+.c115 {
+    top: 14px;
+    right: -110px;
+    border-left: transparent;
+    border-bottom: transparent;
+    border-radius: 0 110px 110px 0;
+}
+
+.v99 {
+    top: 234px;
+    left: 0;
+    width: calc(100% + 1px);
+}
+
+.c116 {
+    top: 234px;
+    left: -110px;
+    border-right: transparent;
+    border-bottom: transparent;
+    border-radius: 110px 0 0 110px;
+}
+
+.v100 {
+    top: 454px;
+    left: 0;
+    width: calc(100% + 1px);
+}
+
+.c117 {
+    top: 454px;
+    right: -110px;
+    border-left: transparent;
+    border-bottom: transparent;
+    border-radius: 0 110px 110px 0;
+}
+
+.v101 {
+    top: 674px;
+    left: 50%;
+    width: calc(50% + 1px);
+}
+
+/* 모든 변곡점 포인트 스타일 및 위치 */
+.p_top_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.p_left_end {
+    position: absolute;
+    top: 220px;
+    left: 0;
+    z-index: 5;
+}
+
+.p_mid_right {
+    position: absolute;
+    top: 440px;
+    right: 0;
+    z-index: 5;
+}
+
+.p_right_end {
+    position: absolute;
+    top: 660px;
+    right: 0;
+    z-index: 5;
+    width: 28px;
+    height: 28px;
+    background: #FEFEFE;
+    border-radius: 50%;
+    filter: blur(1.5px);
+    transform: translateX(50%);
+}
+
+.p121 {
+    animation: slowBlink 4s infinite ease-in-out;
+}
+
+@keyframes slowBlink {
+    0%, 100% {
+        opacity: 0.4;
+        box-shadow: 0 0 5px rgba(254, 254, 254, 0.2);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(254, 254, 254, 0.8), 0 0 30px rgba(254, 254, 254, 0.4);
+    }
+}
+
+
+/* 단계별 그리드 배치 */
+.flow-steps-grid {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+}
+
+.flow-step {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.flow-step.left {
+    left: 0;
+    text-align: left;
+}
+
+.flow-step.right {
+    right: 0;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+.flow-step.center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 중앙 단계(Step 4)에서 점과 글씨가 겹치지 않게 하단으로 밀어냄 */
+.flow-step.center .step-content {
+    margin-top: 30px;
+}
+
+/* 단계별 수직 위치 */
+.step1 {
+    top: 0;
+}
+
+.step2 {
+    top: 220px;
+}
+
+.step3 {
+    top: 440px;
+}
+
+.step4 {
+    top: 660px;
+}
+
+/* 중앙 포인트 위치에 맞춤 */
+
+.flow-step .point {
+    width: 28px;
+    height: 28px;
+    background: #FEFEFE;
+    border-radius: 50%;
+    filter: blur(1.5px);
+    flex-shrink: 0;
+}
+
+.flow-step .step-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: -40px;
+    /* 대폭 상향 조정 (-10px -> -40px) */
+}
+
+.flow-step .step-label {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 65px;
+    /* 선과의 간격을 확실하게 넓힘 (45px -> 65px) */
+    opacity: 0.6;
+}
+
+.flow-step .step-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 300;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.flow-step .special {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    width: max-content;
+    max-width: 750px;
+    line-height: 1.8;
+}
+
+/* ========================================================== */
+/* [상단 고정 네비게이션 - 아트워크 버전] */
+.global-nav {
+    position: fixed;
+    top: 40px;
+    right: 50px;
+    z-index: 9999999;
+    /* 커서 바로 아래 레이어 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.global-nav.scrolled {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* 메뉴 트리거 (나뭇잎 + 텍스트) */
+#menu-trigger {
+    position: relative;
+    cursor: none !important;
+    /* 시스템 커서 제거 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    transition: transform 0.3s ease;
+    pointer-events: auto !important;
+    z-index: 9999999;
+}
+
+#menu-trigger:hover {
+    transform: scale(1.05);
+}
+
+.leaf-icon {
+    position: absolute;
+    width: 280px;
+    height: 140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    /* 조금 더 선명하게 */
+    pointer-events: none !important;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaf-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(1.1) contrast(1.2);
+    /* 가시성 보강 */
+}
+
+.trigger-text {
+    color: #ffffff;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    pointer-events: none !important;
+}
+
+/* 드롭다운 메뉴 리스트 */
+.nav-dropdown {
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: transparent;
+    padding: 10px 30px;
+    border-radius: 2px;
+}
+
+.global-nav.active .nav-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+.dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: right;
+}
+
+.dropdown-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-item:hover {
+    opacity: 1;
+    transform: translateX(-5px);
+}
+
+/* ========================================================== */
+/* [기본 레이아웃 및 스크롤 설정] */
+/* ========================================================== */
+
+/* ========================================================== */
+/* [커스텀 커서 시스템 복구] */
+* {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none !important;
+    z-index: 10000000;
+}
+
+.cursor-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    pointer-events: none !important;
+    z-index: 10000001;
+    transform: translate(-50%, -50%) !important;
+    display: block !important;
+    /* 다시 보이게 강제 */
+}
+
+/* 첫 번째 조각 (나뭇잎 본체) */
+.cursor-piece:first-child {
+    width: 80px;
+    height: 80px;
+    background-image: url('hinokcursor.svg') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent !important;
+    opacity: 0.9;
+    z-index: 10000002;
+}
+
+.cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 255, 230, 0.08) 0%, transparent 70%);
+    mix-blend-mode: screen;
+    pointer-events: none !important;
+    /* 클릭 방해 금지 강제 적용 */
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.cursor-piece {
+    position: absolute;
+    background-image: url('cursor_texture.png');
+    background-size: cover;
+    mix-blend-mode: screen;
+    filter: brightness(0) invert(1);
+    opacity: 0.2;
+    transition: transform 0.2s ease-out;
+}
+
+.cursor-piece.p1 {
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%) rotate(180deg);
+    opacity: 0.3;
+    z-index: 10;
+}
+
+.cursor-piece.p2 {
+    width: 36px;
+    height: 36px;
+    transform: translate(-50%, -50%) rotate(-11deg);
+    opacity: 0.2;
+    z-index: 9;
+}
+
+.cursor-piece.follower {
+    opacity: 0.12;
+    animation: cursorPieceWaver 8s infinite alternate ease-in-out;
+}
+
+.cursor-piece.p3 {
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%) rotate(-122deg);
+    animation-delay: -2s;
+}
+
+.cursor-piece.p4 {
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%) rotate(-63deg);
+    animation-delay: -4s;
+}
+
+.cursor-piece.p5 {
+    width: 18px;
+    height: 18px;
+    transform: translate(-50%, -50%) rotate(-122deg);
+    animation-delay: -6s;
+}
+
+.cursor-piece.p6 {
+    width: 18px;
+    height: 18px;
+    transform: translate(-50%, -50%) rotate(-11deg);
+    animation-delay: -8s;
+}
+
+@keyframes cursorPieceWaver {
+    0% {
+        margin-top: -6px;
+        margin-left: -6px;
+        rotate: -10deg;
+    }
+
+    100% {
+        margin-top: 6px;
+        margin-left: 6px;
+        rotate: 10deg;
+    }
+}
+
+.custom-cursor.expanded .cursor-piece {
+    opacity: 0.4;
+}
+
+.custom-cursor.expanded .p1 {
+    width: 70px;
+    height: 70px;
+}
+
+.custom-cursor.expanded .p2 {
+    width: 50px;
+    height: 50px;
+}
+
+/* ========================================================== */
+/* ========================================================== */
+/* [서브 페이지 최종 커서 설정 - JS 커서 방식 활용] */
+/* 브라우저 자체 커서 이미지 크기 제한 문제를 피하기 위해 JS 커서를 다시 활성화 */
+html body.light-mode,
+html body.light-mode * {
+    cursor: none !important;
+}
+
+/* 잔상 조각들과 트레일은 숨김 (첫 번째 조각 제외) */
+html body.light-mode .cursor-piece:not(:first-child),
+html body.light-mode .cursor-trail {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* 첫 번째 조각을 leap.svg로 변경하여 단일 커서로 활용 */
+html body.light-mode .cursor-piece:first-child {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.9 !important;
+    background-image: none !important;
+    background-color: #008B8B !important;
+    /* 청록색 설정 */
+    -webkit-mask-image: url('leap.svg') !important;
+    -webkit-mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-image: url('leap.svg') !important;
+    mask-size: contain !important;
+    mask-repeat: no-repeat !important;
+    mask-position: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    filter: none;
+    /* 기존 어둡게 하는 필터 제거 */
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+    /* 45도 회전으로 수정 */
+}
+
+
+/* ========================================================== */
+/* [작가 소개 페이지 (Artist) 레이아웃] */
+.artist-scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.artist-scroll-track {
+    height: 250vh;
+    /* 스크롤 공간 확보 */
+}
+
+.artist-content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* 클릭 투과 */
+}
+
+.artist-top-text {
+    position: absolute;
+    top: 60px;
+    /* 상단에 딱 붙이기 */
+    display: flex;
+    gap: 35px;
+    /* 절반으로 축소 */
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 500;
+    font-size: 30px;
+    /* 60px -> 30px */
+    color: #425C5F;
+}
+
+/* h i n o k 순차적 무한 페이드 효과 (부드럽게 투명해지며 사라짐) */
+@keyframes fadeSequence {
+
+    0%,
+    25% {
+        opacity: 1;
+    }
+
+    /* 처음 2초간(0~2s) 선명하게 유지 */
+    55%,
+    70% {
+        opacity: 0;
+    }
+
+    /* 아주 천천히(2.4초 동안) 사라진 후, 빈 공간 유지 */
+    100% {
+        opacity: 1;
+    }
+
+    /* 다시 아주 천천히 나타남 */
+}
+
+.artist-top-text span {
+    animation: fadeSequence 8s infinite ease-in-out;
+}
+
+/* 글자가 하나씩(순차적으로) 사라지게 만드는 딜레이 복구 */
+.artist-top-text span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.artist-top-text span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.artist-top-text span:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.artist-top-text span:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+.artist-top-text span:nth-child(5) {
+    animation-delay: 1.6s;
+}
+
+.artist-center-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    /* 50px -> 25px */
+    margin-top: 0;
+    /* 완벽한 정중앙 정렬을 위해 0으로 변경 */
+}
+
+.txt-made,
+.txt-respect {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 500;
+    font-size: 30px;
+    /* 60px -> 30px */
+    color: #425C5F;
+}
+
+.bracket {
+    font-family: 'American Typewriter', serif;
+    font-weight: 300;
+    font-size: 41px;
+    /* 82px -> 41px */
+    color: #425C5F;
+    line-height: 1;
+    transform: translateY(-2px);
+    /* 세로 정렬 미세 조정 */
+}
+
+.artist-interactive-area {
+    position: relative;
+    width: 60px;
+    /* 120px -> 60px */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.treering-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.treering-img {
+    width: 57px;
+    /* 114px -> 57px */
+    height: auto;
+}
+
+.names-wrapper {
+    position: absolute;
+    top: 30px;
+    /* 인터랙티브 영역의 정중앙 기준점 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* 세로 간격 대폭 확대 */
+    transition: transform 0.6s ease;
+}
+
+.artist-name {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 17px;
+    /* 정확한 높이 계산을 위해 고정 */
+    color: #425C5F;
+    transition: opacity 0.6s ease, font-weight 0.6s ease;
+}
+
+/* ========================================= */
+/* [멀티 스텝 스크롤 인터랙션 상태 정의] */
+/* ========================================= */
+
+/* Step 0: 초기 상태 (나이테 보임, 이름은 아래에 숨김) */
+body.artist-step-0 .treering-wrapper {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+body.artist-step-0 .names-wrapper {
+    transform: translateY(40px);
+    /* 화면 아래쪽에 대기 */
+}
+
+body.artist-step-0 .names-wrapper .artist-name {
+    opacity: 0;
+}
+
+/* Step 1: 경란 진입 (정중앙 완벽 정렬), 나이테 상승 */
+body.artist-step-1 .treering-wrapper {
+    opacity: 0.3;
+    transform: translateY(-60px) scale(0.8);
+}
+
+body.artist-step-1 .names-wrapper {
+    transform: translateY(-8px);
+    /* 경란이 정확히 괄호 중앙에 오도록 미세 조정 (-8.5px 반올림) */
+}
+
+body.artist-step-1 .names-wrapper .n1 {
+    opacity: 1;
+    font-weight: 700;
+}
+
+body.artist-step-1 .names-wrapper .n2 {
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+body.artist-step-1 .names-wrapper .n3 {
+    opacity: 0.2;
+    font-weight: 400;
+}
+
+/* Step 2: 민서 진입 (정중앙), 경란 & 나이테 상승 */
+body.artist-step-2 .treering-wrapper {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.6);
+}
+
+body.artist-step-2 .names-wrapper {
+    transform: translateY(-55px);
+    /* 민서 중앙 정렬 (-8px - 47px) */
+}
+
+body.artist-step-2 .names-wrapper .n1 {
+    opacity: 0.3;
+    font-weight: 400;
+}
+
+body.artist-step-2 .names-wrapper .n2 {
+    opacity: 1;
+    font-weight: 700;
+}
+
+body.artist-step-2 .names-wrapper .n3 {
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+/* Step 3: 지유 진입 (정중앙), 민서 & 경란 상승 */
+body.artist-step-3 .treering-wrapper {
+    opacity: 0;
+    transform: translateY(-130px) scale(0.5);
+}
+
+body.artist-step-3 .names-wrapper {
+    transform: translateY(-102px);
+    /* 지유 중앙 정렬 (-55px - 47px) */
+}
+
+body.artist-step-3 .names-wrapper .n1 {
+    opacity: 0;
+    font-weight: 400;
+}
+
+body.artist-step-3 .names-wrapper .n2 {
+    opacity: 0.3;
+    font-weight: 400;
+}
+
+body.artist-step-3 .names-wrapper .n3 {
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* ========================================= */
+/* [작가 상세 정보 공통 레이아웃 (Step 1, Step 2)] */
+/* ========================================= */
+.artist-details {
+    position: absolute;
+    width: 100%;
+    bottom: 10vh;
+    /* 화면 하단에 일괄 고정 */
+    left: 0;
+    padding: 0 12vw;
+    /* 좌우 여백 */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1000;
+}
+
+body.artist-step-1 .kyungran-details,
+body.artist-step-2 .minseo-details,
+body.artist-step-3 .jiyu-details {
+    opacity: 1 !important;
+}
+
+.artist-details p {
+    font-family: 'Cormorant Infant', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #0A2E37;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.artist-details .details-left {
+    text-align: left;
+}
+
+.artist-details .details-left .gap-top {
+    margin-top: 25px;
+    /* 첫번째/두번째 줄과 세번째 줄 사이의 여백 */
+}
+
+.artist-details .details-right {
+    text-align: right;
+}
+
+/* ========================================= */
+/* [스크롤 유도 안내선 & 애니메이션 (Step 0 전용)] */
+/* ========================================= */
+.scroll-hint {
+    position: absolute;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: #425C5F; /* 차분하고 세련된 청록 회색 톤 */
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    animation: hintBounce 2s infinite ease-in-out;
+}
+
+@keyframes hintBounce {
+    0%, 100% {
+        transform: translate(-50%, 0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, 6px);
+        opacity: 0.7;
+    }
+}
+
+/* 스크롤 시 하단 작가 상세 정보와 겹치지 않게 자연스럽게 아래로 내려가며 사라짐 */
+body.artist-step-1 .scroll-hint,
+body.artist-step-2 .scroll-hint,
+body.artist-step-3 .scroll-hint {
+    opacity: 0 !important;
+    transform: translate(-50%, 15px) !important;
+    pointer-events: none;
+}
+
+/* Footer Styles */
+.site-footer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    z-index: 10;
+}
+
+.treering-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.treering-link:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.treering-img {
+    width: 140px;
+    height: auto;
+    opacity: 0.8;
+    animation: rotateSlow 30s linear infinite;
+}
+
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.click-here {
+    position: absolute;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 16px;
+    color: #fefefe;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.copyright {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 12px;
+    color: #fefefe;
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0.3;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================================== */
+/* NOTICE PAGE STYLES */
+/* ========================================================== */
+
+body.notice-page {
+    background-color: #061E23;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+}
+
+.notice-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px 80px;
+    box-sizing: border-box;
+}
+
+.notice-header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+    margin-top: 45px;
+}
+
+.notice-leap-bg {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    opacity: 0.2;
+    z-index: 0;
+    top: -80px;
+}
+
+.notice-title {
+    font-family: 'Cormorant', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 60px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
+    z-index: 1;
+}
+
+.notice-subtitle {
+    font-family: 'Pretendard', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 15px 0 0 0;
+    z-index: 1;
+}
+
+.notice-content {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 100%;
+    max-width: 830px;
+    margin-bottom: 150px;
+    z-index: 1;
+}
+
+.notice-content p {
+    font-family: 'Pretendard', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    word-break: keep-all;
+}
+
+/* Figma에 명시된 대로 마지막 문단에는 text-shadow 제외 */
+.notice-content p:last-child {
+    text-shadow: none;
+}
+
+.notice-footer {
+    font-family: 'Pretendard', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: auto;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand - Hinok</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <!-- 상단 고정 네비게이션 (서브 페이지 상시 노출) -->
+    <nav class="global-nav scrolled">
+        <div class="menu-trigger" id="menu-trigger">
+            <div class="leaf-icon">
+                <img src="leap.svg" alt="leaf icon">
+            </div>
+            <span class="trigger-text">i want more</span>
+        </div>
+        <div class="nav-dropdown">
+            <ul class="dropdown-list">
+                <li><a href="brand.html" class="dropdown-item">브랜드 설명</a></li>
+                <li><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
+                <li><a href="artist.html" class="dropdown-item">작가 소개</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 배경 은은한 오버레이 -->
+    <div class="sub-bg-overlay"></div>
+
+    <!-- 좌측 상단 Back 버튼 -->
+    <a href="index.html" class="back-link" style="position: fixed; top: 40px; left: 40px; color: #17120f; text-decoration: none; opacity: 0.3; font-size: 14px; letter-spacing: 0.05em; z-index: 10001; padding: 20px; margin: -20px; transition: opacity 0.3s ease;">← go to Home</a>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <h1 style="font-weight: 300; letter-spacing: 0.1em; opacity: 0.8;">브랜드 설명 페이지 (준비 중)</h1>
+    </div>
+
+    <!-- 커스텀 커서 시스템 -->
+    <div class="cursor-trail"></div>
+    <div class="custom-cursor">
+        <div class="cursor-piece"></div>
+        <div class="cursor-piece"></div>
+        <div class="cursor-piece"></div>
+        <div class="cursor-piece"></div>
+        <div class="cursor-piece"></div>
+        <div class="cursor-piece"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
