@@ -245,7 +245,7 @@ body.light-mode .dropdown-item {
 
 .content-section {
     height: auto;
-    min-height: 5000px;
+    min-height: 100vh;
     background-color: #061E23;
     z-index: 11;
     position: relative;
@@ -502,7 +502,7 @@ body.light-mode .dropdown-item {
 .exhibition-flow {
     position: relative;
     width: 100%;
-    padding-bottom: 350px;
+    padding-bottom: 80px;
 }
 
 .flow-title-wrap {
@@ -1535,7 +1535,7 @@ body.artist-step-3 .scroll-hint {
 /* NOTICE PAGE STYLES */
 /* ========================================================== */
 
-body.notice-page {
+html.notice-page, body.notice-page {
     background-color: #061E23;
     margin: 0;
     padding: 0;
@@ -1545,6 +1545,7 @@ body.notice-page {
     min-height: 100vh;
     height: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .notice-container {
@@ -1582,8 +1583,8 @@ body.notice-page {
     font-family: 'Cormorant', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 64px;
-    line-height: 60px;
+    font-size: 48px;
+    line-height: 48px;
     text-align: center;
     color: #FFFFFF;
     margin: 0;
@@ -1594,8 +1595,8 @@ body.notice-page {
     font-family: 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 40px;
+    font-size: 20px;
+    line-height: 32px;
     text-align: center;
     color: #FFFFFF;
     margin: 15px 0 0 0;
@@ -1616,8 +1617,8 @@ body.notice-page {
     font-family: 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 40px;
+    font-size: 20px;
+    line-height: 34px;
     text-align: center;
     color: #FFFFFF;
     margin: 0;
@@ -1634,9 +1635,27 @@ body.notice-page {
     font-family: 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 40px;
+    font-size: 16px;
+    line-height: 24px;
     text-align: center;
     color: rgba(255, 255, 255, 0.5);
     margin-top: auto;
+}
+
+.back-home-btn {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-family: 'Cormorant', serif;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    z-index: 100;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    cursor: none;
+}
+
+.back-home-btn:hover {
+    color: #FFFFFF;
+    opacity: 1;
 }
