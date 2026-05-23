@@ -2008,3 +2008,26 @@ body.brand-page .section-title {
         gap: 40px;
     }
 }
+
+/* ========================================================== */
+/* [고해상도 대화면 디스플레이 성능 최적화] */
+/* ========================================================== */
+@media screen and (min-width: 1920px) {
+    /* 1. 대화면에서 연산량이 과도한 노이즈 오버레이 강도 완화 (블렌드 연산 대신 알파 레이어로 우회) */
+    .noise-overlay {
+        opacity: 0.2;
+        mix-blend-mode: normal;
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+    
+    /* 2. 대화면에서 마우스 좌표 조명 효과 블렌드 강도 완화 (color-dodge 대신 일반 알파 블렌딩 적용) */
+    .light-effect {
+        mix-blend-mode: normal;
+        background: radial-gradient(circle 350px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(150, 255, 200, 0.04) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 80%);
+    }
+    
+    /* 3. 대화면 마우스 트레일 제거로 연산 자원 확보 */
+    .cursor-trail {
+        display: none !important;
+    }
+}
