@@ -24,6 +24,20 @@ body {
     font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
 }
 
+/* 비디오 브라우저 기본 컨트롤 및 오버레이 재생 버튼 강제 숨김 */
+video {
+    outline: none;
+}
+video::-webkit-media-controls {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+}
+
 /* ========================================================== */
 /* [배경 및 효과 시스템] */
 /* ========================================================== */
