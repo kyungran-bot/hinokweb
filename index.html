@@ -11,9 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Cormorant+Infant:wght@400;600&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@500&display=swap" rel="stylesheet">
-    <!-- Spoqa Han Sans Neo 대체 (Pretendard) -->
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <!-- Spoqa Han Sans Neo -->
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -23,22 +22,21 @@
     <!-- 배경 이미지 및 GIF 레이어 -->
     <div class="bg-layers">
         <div class="bg-layer gif-bg"></div>
-        <div class="bg-layer hinok-base"></div>
         <div class="bg-overlay"></div>
     </div>
 
-    <!-- 상단 고정 네비게이션 (아트워크 트리거 방식) - 당분간 작업 보류로 임시 숨김 -->
-    <nav class="global-nav" style="display: none !important;">
+    <!-- 상단 고정 네비게이션 (아트워크 트리거 방식) -->
+    <nav class="global-nav">
         <div class="menu-trigger" id="menu-trigger">
             <div class="leaf-icon">
                 <img src="leap.svg" alt="leaf icon">
             </div>
-            <span class="trigger-text">i want more</span>
+            <span class="trigger-text">more about..</span>
         </div>
         <div class="nav-dropdown">
             <ul class="dropdown-list">
                 <li><a href="brand.html" class="dropdown-item">브랜드 설명</a></li>
-                <li><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
+                <li style="display: none;"><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
                 <li><a href="artist.html" class="dropdown-item">작가 소개</a></li>
             </ul>
         </div>
@@ -184,7 +182,7 @@
                                 <footer class="site-footer">
                                     <a href="notice.html" class="treering-link">
                                         <img src="treering.svg" alt="Tree Ring" class="treering-img">
-                                        <span class="click-here">click here</span>
+                                        <span class="click-here">click here!</span>
                                     </a>
                                     
                                     <p class="copyright">

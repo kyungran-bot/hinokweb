@@ -5,36 +5,433 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project - Hinok</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,400&family=Cormorant+Garamond:wght@300;400&family=Cormorant+Infant:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
+    <style>
+        /* ========== PROJECT PAGE SPECIFIC STYLES ========== */
+        /* Our Project 텍스트: 로고 이미지 높이와 동일한 시각적 크기 */
+        .project-title-text {
+            font-family: 'Cormorant', 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 48px;
+            color: #062B32;
+            letter-spacing: 0.02em;
+            line-height: 52px;
+            display: block;
+        }
+
+        .project-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        .project-intro p {
+            font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 2.2;
+            color: #17120f;
+            letter-spacing: -0.01em;
+        }
+
+        /* ========== Section Divider (blur-divider: brand page 스타일 공유) ========== */
+        /* blur-divider 클래스는 style.css에 이미 정의됨 */
+        /* 프로젝트 페이지 전용 마진 */
+        .project-divider {
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+
+        /* ========== Our Exhibition Space ========== */
+        .exhibition-space-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .space-illustration {
+            width: 100%;
+            max-width: 880px;
+            aspect-ratio: 1186 / 948;
+            position: relative;
+            margin: 0 auto 40px;
+        }
+
+        /* Floor plan SVG illustration */
+        .space-illustration svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ========== Media Sections (Main + Sub) ========== */
+        .media-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .media-thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            width: 100%;
+            max-width: 880px;
+            margin-bottom: 28px;
+        }
+
+        /* 선택 상태: JS에서 직접 opacity 조작 */
+        .media-thumb {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: opacity 0.35s ease;
+        }
+
+        /* 호버 효과 */
+        .media-thumb:hover .media-thumb-box {
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+
+        .media-thumb-box {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: #C8CAC9;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-thumb-box img,
+        .media-thumb-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-thumb-caption {
+            font-family: 'Cormorant Infant', serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #062B32;
+            letter-spacing: 0.02em;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .media-main-box {
+            width: 100%;
+            max-width: 880px;
+            aspect-ratio: 16 / 10;
+            background-color: #C8CAC9;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-main-box img,
+        .media-main-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-section-desc {
+            text-align: center;
+            max-width: 760px;
+        }
+
+        .media-section-desc p {
+            font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 2.2;
+            color: #17120f;
+            letter-spacing: -0.01em;
+        }
+
+        /* ========== Section Separator ========== */
+        .section-separator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            margin: 60px 0 40px;
+        }
+
+        /* ========== project footer ========== */
+        .project-footer {
+            width: 100%;
+            border-top: 1px solid rgba(23, 18, 15, 0.08);
+            padding-top: 50px;
+            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 80px;
+        }
+
+        .project-footer p {
+            font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(23, 18, 15, 0.4);
+            letter-spacing: 0.02em;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="light-mode">
-    <!-- 상단 고정 네비게이션 (서브 페이지 상시 노출) -->
+<body class="light-mode brand-page">
+    <!-- 상단 고정 네비게이션 -->
     <nav class="global-nav scrolled">
         <div class="menu-trigger" id="menu-trigger">
             <div class="leaf-icon">
                 <img src="leap.svg" alt="leaf icon">
             </div>
-            <span class="trigger-text">i want more</span>
+            <span class="trigger-text">more about..</span>
         </div>
         <div class="nav-dropdown">
             <ul class="dropdown-list">
                 <li><a href="brand.html" class="dropdown-item">브랜드 설명</a></li>
-                <li><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
+                <li style="display: none;"><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
                 <li><a href="artist.html" class="dropdown-item">작가 소개</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- 배경 은은한 오버레이 -->
+    <!-- 배경 오버레이 -->
     <div class="sub-bg-overlay"></div>
 
     <!-- 좌측 상단 Back 버튼 -->
     <a href="index.html" class="back-link" style="position: fixed; top: 40px; left: 40px; color: #17120f; text-decoration: none; opacity: 0.3; font-size: 14px; letter-spacing: 0.05em; z-index: 10001; padding: 20px; margin: -20px; transition: opacity 0.3s ease;">← go to Home</a>
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <h1 style="font-weight: 300; letter-spacing: 0.1em; opacity: 0.8;">프로젝트 소개 페이지 (준비 중)</h1>
-    </div>
+    <!-- 메인 컨테이너 -->
+    <div class="brand-scroll-container">
+        <!-- 배경 그리드 라인들 -->
+        <div class="brand-grid-lines">
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+        </div>
 
-    <!-- 커스텀 커서 시스템 -->
+        <!-- 가장자리 나무 이미지 -->
+        <div class="edge-trees left-tree"></div>
+        <div class="edge-trees right-tree"></div>
+
+        <div class="brand-content-wrapper">
+
+            <!-- ===== 상단 헤더: About Our Project (브랜드 소개 페이지와 동일한 스타일) ===== -->
+            <div class="brand-header">
+                <span class="about-text">About</span>
+                <span class="project-title-text">Our Project</span>
+            </div>
+
+            <!-- ===== 인트로 텍스트 ===== -->
+            <div class="project-intro">
+                <p>자연의 생명력이 만들어 낸 편백의 소리와 향을 전하는 전시를 제작하면서</p>
+                <p>몰입적인 공간에서 자라나는 편백처럼, 관람자 스스로가 자연의 리듬 속으로 녹아들기를 바랐습니다.</p>
+                <br>
+                <p>동적인 움직임과 소리를 통해 두 가지 프로젝트를 선보이며, 감성의 층위가 쌓이는 순간</p>
+                <p>다가오는 숲의 감동을 이 전시 안에서 다시 만나기를 기대합니다.</p>
+            </div>
+
+            <!-- ===== Our Exhibition Space ===== -->
+            <div class="exhibition-space-section">
+                <div class="blur-divider project-divider"></div>
+                <h2 class="section-title" style="margin-bottom: 50px;">Our Exhibition Space</h2>
+
+                <!-- 전시 공간 일러스트 (SVG 기반 플로어 플랜) -->
+                <div class="space-illustration">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1186.0 948.0" width="100%" height="100%" fill="none">
+                        <defs>
+                            <pattern id="pattern0_1120_382" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_1120_382" transform="matrix(0.00343836 0 0 0.0116279 -0.0020005 0)" />
+                            </pattern>
+                            <image id="image0_1120_382" width="292" height="86" preserveAspectRatio="none" xlink:href="data:image/png;base64,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" />
+                            <linearGradient id="paint0_linear_1120_378" x1="4.37114e-08" y1="3" x2="581" y2="2.99995" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" stop-opacity="0" />
+                                <stop offset="0.538462" stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_380" x1="4.37114e-08" y1="3" x2="581" y2="2.99995" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" stop-opacity="0" />
+                                <stop offset="0.538462" stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_311" x1="-0.5" y1="-1.70049e-08" x2="-0.50001" y2="298" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_310" x1="-0.5" y1="-1.70049e-08" x2="-0.50001" y2="298" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_314" x1="3" y1="298" x2="2.99998" y2="-2.67061e-08" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_313" x1="3" y1="298" x2="2.99998" y2="-2.67061e-08" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_381" x1="8.74228e-08" y1="3" x2="272" y2="2.99995" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_312" x1="-0.5" y1="-2.18557e-08" x2="-0.500017" y2="383" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_252" x1="-0.5" y1="-2.18557e-08" x2="-0.500017" y2="383" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="paint0_linear_1120_316" x1="272" y1="-0.5" x2="4.37114e-08" y2="-0.500024" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#060A08" />
+                                <stop offset="1" stop-color="#437060" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <g id="node_1120_133" transform="translate(445.0, 189.0)"><rect width="144" height="385" fill="#061E23" /></g>
+                        <g id="node_1120_132" transform="translate(595.0, 189.0)"><rect width="144" height="385" fill="#061E23" /></g>
+                        <g id="node_1120_382" transform="translate(507.0, 340.0)"><rect width="186" height="55" fill="url(#pattern0_1120_382)" /></g>
+                        <g id="node_1120_378" transform="translate(303.0, 188.99994920736754)"><line x1="-1.09278e-07" y1="1.25" x2="581" y2="1.24995" stroke="url(#paint0_linear_1120_378)" stroke-width="2.5" /></g>
+                        <g id="node_1120_380" transform="translate(303.0, 573.9999492073675)"><line x1="-1.09278e-07" y1="1.25" x2="581" y2="1.24995" stroke="url(#paint0_linear_1120_380)" stroke-width="2.5" /></g>
+                        <g id="node_1120_311" transform="translate(735.999983258258, 416.0)"><line x1="1.25" y1="4.25123e-08" x2="1.24998" y2="298" stroke="url(#paint0_linear_1120_311)" stroke-width="2.5" /></g>
+                        <g id="node_1120_310" transform="translate(445.999983258258, 430.0)"><line x1="1.25" y1="4.25123e-08" x2="1.24998" y2="298" stroke="url(#paint0_linear_1120_310)" stroke-width="2.5" /></g>
+                        <g id="node_1120_314" transform="translate(448.99999068975376, 14.0)"><line x1="1.25" y1="298" x2="1.24999" y2="6.67661e-08" stroke="url(#paint0_linear_1120_314)" stroke-width="2.5" /></g>
+                        <g id="node_1120_313" transform="translate(738.9999906897538, 0.0)"><line x1="1.25" y1="298" x2="1.24999" y2="6.67661e-08" stroke="url(#paint0_linear_1120_313)" stroke-width="2.5" /></g>
+                        <g id="node_1120_385" transform="translate(767.0, 361.0)"><rect width="27" height="83" fill="#061E23" /></g>
+                        <g id="node_1120_530" transform="translate(839.0, 229.0)"><rect width="69" height="83" fill="#061E23" /></g>
+                        <g id="node_1120_531" transform="translate(914.0, 229.0)"><rect width="69" height="83" fill="#061E23" /></g>
+                        <g id="node_1120_532" transform="translate(989.0, 229.0)"><rect width="69" height="83" fill="#061E23" /></g>
+                        <g id="node_1120_386" transform="translate(800.0, 395.0)"><rect width="27" height="49" fill="#061E23" /></g>
+                        <g id="node_1120_458" transform="translate(844.0, 413.0)"><rect width="17" height="31" fill="#061E23" /></g>
+                        <g id="node_1120_387" transform="translate(867.0, 368.0)"><rect width="30" height="76" fill="#061E23" /></g>
+                        <g id="node_1120_381" transform="translate(914.0, 446.9999524420091)"><line x1="-2.18557e-07" y1="1.25" x2="272" y2="1.24995" stroke="url(#paint0_linear_1120_381)" stroke-width="2.5" /></g>
+                        <g id="node_1120_135" transform="translate(753.0, 444.0)"><rect width="305" height="16" fill="#061E23" /></g>
+                        <g id="node_1120_610" transform="translate(983.0, 426.0)"><rect width="56" height="18" fill="#061E23" /></g>
+                        <g id="node_1120_137" transform="translate(1042.0000000395667, 443.9999993006186)"><rect x="16" width="130" height="16" transform="rotate(90 16 0)" fill="#061E23" /></g>
+                        <g id="node_1120_312" transform="translate(1049.9999832585381, 565.0)"><line x1="1.25" y1="5.46392e-08" x2="1.24998" y2="383" stroke="url(#paint0_linear_1120_312)" stroke-width="2.5" /></g>
+                        <g id="node_1120_252" transform="translate(133.99998325853812, 565.0)"><line x1="1.25" y1="5.46392e-08" x2="1.24998" y2="383" stroke="url(#paint0_linear_1120_252)" stroke-width="2.5" /></g>
+                        <g id="node_1120_136" transform="translate(127.00000003956666, 443.9999993006186)"><rect x="16" width="130" height="16" transform="rotate(90 16 0)" fill="#061E23" /></g>
+                        <g id="node_1120_316" transform="translate(0.0, 445.99997622100454)"><line x1="272" y1="1.25" x2="-1.09278e-07" y2="1.24998" stroke="url(#paint0_linear_1120_316)" stroke-width="2.5" /></g>
+                        <g id="node_1120_134" transform="translate(127.0, 444.0)"><rect width="305" height="16" fill="#061E23" /></g>
+                        <g id="node_1120_533" transform="translate(352.0, 416.0)"><rect width="69" height="28" fill="#061E23" /></g>
+                        <g id="node_1120_384" transform="translate(127.0, 333.0)"><rect width="147" height="97" fill="#061E23" /></g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- ===== Main Project ===== -->
+            <div class="section-separator">
+                <div class="blur-divider project-divider"></div>
+                <h2 class="section-title" style="margin-bottom: 50px;">Main Project</h2>
+            </div>
+
+            <div class="media-section">
+                <!-- 3개 소형 썸네일 -->
+                <div class="media-thumbnails-grid" id="main-grid">
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="media1.jpg" alt="the night sky passing"> -->
+                            <!-- <video src="media1.mp4" autoplay muted loop></video> -->
+                        </div>
+                        <span class="media-thumb-caption">the night sky passing</span>
+                    </div>
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="media2.jpg" alt="Forest Simulation"> -->
+                        </div>
+                        <span class="media-thumb-caption">Forest Simulation</span>
+                    </div>
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="media3.jpg" alt="Cypress Variation"> -->
+                        </div>
+                        <span class="media-thumb-caption">Cypress Variation</span>
+                    </div>
+                </div>
+
+                <!-- 대형 메인 미디어 -->
+                <div class="media-main-box">
+                    <!-- <img src="main_project.jpg" alt="Main Project"> -->
+                    <!-- <video src="main_project.mp4" autoplay muted loop></video> -->
+                </div>
+
+                <!-- 설명 텍스트 -->
+                <div class="media-section-desc">
+                    <p>편백의 생명력을 기반으로 자연과 인간이 만나는 감각적인 접점을 따라갑니다.</p>
+                    <p>첫 가을 사슴 발걸음이 남긴 선의 궤적 위에 음악과 자연이 사라면 만남을 소리와 빛으로 그려냅니다.</p>
+                </div>
+            </div>
+
+            <!-- ===== Sub Project ===== -->
+            <div class="section-separator">
+                <div class="blur-divider project-divider"></div>
+                <h2 class="section-title" style="margin-bottom: 50px;">Sub Project</h2>
+            </div>
+
+            <div class="media-section">
+                <!-- 3개 소형 썸네일 -->
+                <div class="media-thumbnails-grid" id="sub-grid">
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="sub1.jpg" alt="Our Nature"> -->
+                        </div>
+                        <span class="media-thumb-caption">Our Nature</span>
+                    </div>
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="sub2.jpg" alt="Nature & Portraits"> -->
+                        </div>
+                        <span class="media-thumb-caption">Nature &amp; Portraits</span>
+                    </div>
+                    <div class="media-thumb" onclick="selectThumb(this)">
+                        <div class="media-thumb-box">
+                            <!-- <img src="sub3.jpg" alt="Harmony of Cycle"> -->
+                        </div>
+                        <span class="media-thumb-caption">Harmony of Cycle</span>
+                    </div>
+                </div>
+
+                <!-- 대형 서브 미디어 -->
+                <div class="media-main-box">
+                    <!-- <img src="sub_project.jpg" alt="Sub Project"> -->
+                    <!-- <video src="sub_project.mp4" autoplay muted loop></video> -->
+                </div>
+
+                <!-- 설명 텍스트 -->
+                <div class="media-section-desc">
+                    <p>편백의 생명력을 기반으로 자연과 인간이 만나는 감각적인 접점을 따라갑니다.</p>
+                    <p>첫 가을 사슴 발걸음이 남긴 선의 궤적 위에 음악과 자연이 사라면 만남을 소리와 빛으로 그려냅니다.</p>
+                </div>
+            </div>
+
+            <!-- ===== 푸터 ===== -->
+            <footer class="project-footer">
+                <p>EWHA 2026 MAYDAY Exhibition</p>
+                <p>Media Art_Team hinok</p>
+            </footer>
+
+        </div><!-- .brand-content-wrapper -->
+    </div><!-- .brand-scroll-container -->
+
+    <!-- 커스텀 커서 -->
     <div class="cursor-trail"></div>
     <div class="custom-cursor">
         <div class="cursor-piece"></div>
@@ -46,5 +443,32 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+        function selectThumb(thumb) {
+            var grid = thumb.closest('.media-thumbnails-grid');
+            var allThumbs = grid.querySelectorAll('.media-thumb');
+            var isSelected = thumb.getAttribute('data-selected') === 'true';
+
+            // 모든 썸네일 원래 상태로 리셋
+            for (var i = 0; i < allThumbs.length; i++) {
+                allThumbs[i].style.opacity = '';
+                allThumbs[i].style.pointerEvents = '';
+                allThumbs[i].removeAttribute('data-selected');
+            }
+
+            // 이미 선택된 걸 다시 누르면 해제 (리셋 상태 유지)
+            // 아니면 클릭한 것 외 나머지를 숨김
+            if (!isSelected) {
+                for (var i = 0; i < allThumbs.length; i++) {
+                    if (allThumbs[i] !== thumb) {
+                        allThumbs[i].style.opacity = '0';
+                        allThumbs[i].style.pointerEvents = 'none';
+                    }
+                }
+                thumb.setAttribute('data-selected', 'true');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
 }
 
 /* ========================================================== */
@@ -44,16 +47,14 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+    /* GPU 가속 활성화 */
 }
 
 .bg-layer.gif-bg {
     background-image: url('bg.gif');
     opacity: 1.0;
-}
-
-.bg-layer.hinok-base {
-    background-image: url('bg.png');
-    opacity: 0.6;
 }
 
 .bg-overlay {
@@ -538,6 +539,22 @@ body.light-mode .dropdown-item {
     height: 1100px;
 }
 
+.flow-path-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bgtree copy.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* 경로를 따라 움직이는 빛의 점 */
 .moving-dot {
     position: absolute;
@@ -685,10 +702,13 @@ body.light-mode .dropdown-item {
 }
 
 @keyframes slowBlink {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.4;
         box-shadow: 0 0 5px rgba(254, 254, 254, 0.2);
     }
+
     50% {
         opacity: 1;
         box-shadow: 0 0 15px rgba(254, 254, 254, 0.8), 0 0 30px rgba(254, 254, 254, 0.4);
@@ -772,11 +792,13 @@ body.light-mode .dropdown-item {
 }
 
 .flow-step .step-label {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 20px;
+    font-family: 'Cormorant', 'Cormorant Infant', serif;
+    font-size: 26px;
+    font-style: normal;
     font-weight: 400;
+    line-height: 32px;
+    color: #FFF;
     margin-bottom: 65px;
-    /* 선과의 간격을 확실하게 넓힘 (45px -> 65px) */
     opacity: 0.6;
 }
 
@@ -789,8 +811,8 @@ body.light-mode .dropdown-item {
 }
 
 .flow-step .special {
-    font-family: 'Pretendard', sans-serif;
-    font-size: 20px;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-size: 18px;
     width: max-content;
     max-width: 750px;
     line-height: 1.8;
@@ -1082,28 +1104,29 @@ html body.light-mode .cursor-trail {
     opacity: 0 !important;
 }
 
-/* 첫 번째 조각을 leap.svg로 변경하여 단일 커서로 활용 */
+/* 첫 번째 조각을 #0A2E37 색상의 원형으로 설정하고, 가장자리로 갈수록 투명해지도록 radial-gradient와 블러 적용 */
 html body.light-mode .cursor-piece:first-child {
     display: block !important;
     visibility: visible !important;
-    opacity: 0.9 !important;
+    opacity: 0.95 !important;
     background-image: none !important;
-    background-color: #008B8B !important;
-    /* 청록색 설정 */
-    -webkit-mask-image: url('leap.svg') !important;
-    -webkit-mask-size: contain !important;
-    -webkit-mask-repeat: no-repeat !important;
-    -webkit-mask-position: center !important;
-    mask-image: url('leap.svg') !important;
-    mask-size: contain !important;
-    mask-repeat: no-repeat !important;
-    mask-position: center !important;
-    width: 60px !important;
-    height: 60px !important;
-    filter: none;
-    /* 기존 어둡게 하는 필터 제거 */
-    transform: translate(-50%, -50%) rotate(45deg) !important;
-    /* 45도 회전으로 수정 */
+    background: radial-gradient(circle, rgba(10, 46, 55, 1) 0%, rgba(10, 46, 55, 0.4) 60%, rgba(10, 46, 55, 0) 100%) !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    border-radius: 50% !important;
+    width: 22px !important;
+    height: 22px !important;
+    filter: blur(0.5px) !important;
+    mix-blend-mode: normal !important;
+    transform: translate(-50%, -50%) !important;
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+/* 라이트 모드 커서 호버 확장 효과 */
+html body.light-mode .custom-cursor.expanded .cursor-piece:first-child {
+    width: 44px !important;
+    height: 44px !important;
+    background: radial-gradient(circle, rgba(10, 46, 55, 0.8) 0%, rgba(10, 46, 55, 0.2) 60%, rgba(10, 46, 55, 0) 100%) !important;
 }
 
 
@@ -1134,66 +1157,7 @@ html body.light-mode .cursor-piece:first-child {
     /* 클릭 투과 */
 }
 
-.artist-top-text {
-    position: absolute;
-    top: 60px;
-    /* 상단에 딱 붙이기 */
-    display: flex;
-    gap: 35px;
-    /* 절반으로 축소 */
-    font-family: 'Cormorant Infant', serif;
-    font-weight: 500;
-    font-size: 30px;
-    /* 60px -> 30px */
-    color: #425C5F;
-}
 
-/* h i n o k 순차적 무한 페이드 효과 (부드럽게 투명해지며 사라짐) */
-@keyframes fadeSequence {
-
-    0%,
-    25% {
-        opacity: 1;
-    }
-
-    /* 처음 2초간(0~2s) 선명하게 유지 */
-    55%,
-    70% {
-        opacity: 0;
-    }
-
-    /* 아주 천천히(2.4초 동안) 사라진 후, 빈 공간 유지 */
-    100% {
-        opacity: 1;
-    }
-
-    /* 다시 아주 천천히 나타남 */
-}
-
-.artist-top-text span {
-    animation: fadeSequence 8s infinite ease-in-out;
-}
-
-/* 글자가 하나씩(순차적으로) 사라지게 만드는 딜레이 복구 */
-.artist-top-text span:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.artist-top-text span:nth-child(2) {
-    animation-delay: 0.4s;
-}
-
-.artist-top-text span:nth-child(3) {
-    animation-delay: 0.8s;
-}
-
-.artist-top-text span:nth-child(4) {
-    animation-delay: 1.2s;
-}
-
-.artist-top-text span:nth-child(5) {
-    animation-delay: 1.6s;
-}
 
 .artist-center-row {
     position: relative;
@@ -1265,7 +1229,7 @@ html body.light-mode .cursor-piece:first-child {
 }
 
 .artist-name {
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
     font-weight: 400;
     font-size: 19px;
     line-height: 17px;
@@ -1434,7 +1398,8 @@ body.artist-step-3 .jiyu-details {
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.15em;
-    color: #425C5F; /* 차분하고 세련된 청록 회색 톤 */
+    color: #425C5F;
+    /* 차분하고 세련된 청록 회색 톤 */
     opacity: 0.6;
     pointer-events: none;
     z-index: 1000;
@@ -1443,10 +1408,13 @@ body.artist-step-3 .jiyu-details {
 }
 
 @keyframes hintBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(-50%, 0);
         opacity: 0.3;
     }
+
     50% {
         transform: translate(-50%, 6px);
         opacity: 0.7;
@@ -1493,24 +1461,26 @@ body.artist-step-3 .scroll-hint {
     opacity: 0.9;
 }
 
-.treering-img {
+.treering-link .treering-img {
     width: 140px;
     height: auto;
     opacity: 0.8;
-    animation: rotateSlow 30s linear infinite;
+    filter: brightness(0) invert(1);
 }
 
 @keyframes rotateSlow {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
 .click-here {
-    position: absolute;
+    position: relative;
+    margin-top: 15px;
     font-family: 'Cormorant Infant', serif;
     font-size: 16px;
     color: #fefefe;
@@ -1521,7 +1491,7 @@ body.artist-step-3 .scroll-hint {
 }
 
 .copyright {
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
     font-size: 12px;
     color: #fefefe;
     text-align: center;
@@ -1535,7 +1505,8 @@ body.artist-step-3 .scroll-hint {
 /* NOTICE PAGE STYLES */
 /* ========================================================== */
 
-html.notice-page, body.notice-page {
+html.notice-page,
+body.notice-page {
     background-color: #061E23;
     margin: 0;
     padding: 0;
@@ -1592,7 +1563,7 @@ html.notice-page, body.notice-page {
 }
 
 .notice-subtitle {
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -1614,7 +1585,7 @@ html.notice-page, body.notice-page {
 }
 
 .notice-content p {
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -1632,7 +1603,7 @@ html.notice-page, body.notice-page {
 }
 
 .notice-footer {
-    font-family: 'Pretendard', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -1658,4 +1629,382 @@ html.notice-page, body.notice-page {
 .back-home-btn:hover {
     color: #FFFFFF;
     opacity: 1;
+}
+
+/* ========================================================== */
+/* [브랜드 소개 페이지 (Brand) 레이아웃] */
+/* ========================================================== */
+
+/* 브랜드 페이지의 배경 오버레이 (작가 소개 페이지처럼 은은한 배경 유지) */
+body.brand-page .sub-bg-overlay {
+    display: block !important;
+}
+
+/* 브랜드 페이지 스크롤 설정 */
+html:has(body.brand-page) {
+    overflow: auto !important;
+    height: auto !important;
+}
+
+body.brand-page {
+    background-color: #FAFAFA !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh;
+    display: block !important;
+}
+
+/* 스크롤 컨테이너 */
+.brand-scroll-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 180px 0 120px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+/* 배경 그리드 라인들 (5개의 얇은 선) */
+.brand-grid-lines {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1920px;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 1;
+    padding: 0 10%;
+}
+
+.brand-grid-lines .grid-line {
+    width: 1px;
+    height: 100%;
+    background-color: rgba(23, 18, 15, 0.04);
+}
+
+/* 가장자리 나무 요소들 */
+.edge-trees {
+    position: fixed;
+    top: 0;
+    width: 306px;
+    height: 100vh;
+    background-image: url('treegrey.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.edge-trees.left-tree {
+    left: 0;
+    background-position: left center;
+}
+
+.edge-trees.right-tree {
+    right: 0;
+    transform: scaleX(-1);
+    background-position: left center;
+}
+
+/* 본문 영역 */
+.brand-content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1316px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+    padding: 0 40px;
+}
+
+/* 상단 헤더: About hinok */
+.brand-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 84px;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.brand-header:hover {
+    opacity: 0.75;
+}
+
+.brand-header .about-text {
+    font-family: 'Cormorant', 'Cormorant Garamond', 'Cormorant Infant', serif;
+    font-weight: 400;
+    font-size: 32px;
+    color: #062B32;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    position: relative;
+    top: 2px;
+    /* baseline visual alignment correction */
+}
+
+.brand-header .brand-logo-img {
+    width: 176px;
+    height: 52px;
+    opacity: 0.95;
+    display: block;
+}
+
+/* 한자 블록 */
+.hanja-section {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    margin-bottom: 95px;
+}
+
+.hanja-item {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.hanja-item .korean {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #062B32;
+    letter-spacing: 0.05em;
+}
+
+.hanja-item .chinese {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 400;
+    font-size: 70px;
+    color: #062B32;
+    opacity: 0.4;
+    line-height: 1;
+}
+
+/* 브랜드 설명 문구 */
+.brand-intro {
+    text-align: center;
+    max-width: 1136px;
+    margin-bottom: 110px;
+}
+
+.brand-intro p {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 2.2;
+    color: #17120f;
+    letter-spacing: -0.01em;
+}
+
+/* 브랜드 홈페이지 링크 */
+.brand-website {
+    display: inline-block;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(23, 18, 15, 0.2);
+    padding-bottom: 4px;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.brand-website:hover {
+    opacity: 0.8;
+    border-color: rgba(23, 18, 15, 0.5);
+}
+
+.brand-website .web-text {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(23, 18, 15, 0.6);
+    letter-spacing: 0.05em;
+}
+
+/* 부드럽게 흐릿한 구분 점 */
+.blur-divider {
+    width: 14px;
+    height: 14px;
+    background-color: rgba(6, 43, 50, 0.7);
+    border-radius: 50%;
+    filter: blur(2.5px);
+    margin: 0 auto;
+}
+
+.blur-divider.divider-1 {
+    margin-top: 209px;
+    margin-bottom: 30px;
+}
+
+.blur-divider.divider-2 {
+    margin-top: 293px;
+    margin-bottom: 30px;
+}
+
+/* 공통 섹션 타이틀 (Products Used & The Journey of hinok) */
+body.brand-page .section-title {
+    color: #062B32;
+    text-align: center;
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: #062B32;
+    font-family: 'Cormorant', 'Cormorant Garamond', 'Cormorant Infant', serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 60px;
+    letter-spacing: 0.02em;
+}
+
+.products-section .section-title {
+    margin-bottom: 99px;
+}
+
+.journey-section .section-title {
+    margin-bottom: 125px;
+}
+
+/* Products 섹션 */
+.products-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.products-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 356px);
+    justify-content: center;
+    gap: 124px;
+    margin-bottom: 131px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-img-wrapper {
+    width: 356px;
+    height: 356px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    background-color: transparent;
+}
+
+.product-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.03);
+    opacity: 1;
+}
+
+.product-name {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #062B32;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+.products-desc {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(23, 18, 15, 0.7);
+    text-align: center;
+    margin-top: 0px;
+    letter-spacing: -0.01em;
+}
+
+/* Journey 섹션 */
+.journey-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 300px;
+}
+
+.journey-content {
+    text-align: center;
+    max-width: 1098px;
+}
+
+.journey-content p {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 2.3;
+    color: #17120f;
+    letter-spacing: -0.01em;
+}
+
+.journey-content p.para-gap {
+    margin-top: 35px;
+}
+
+/* 푸터 */
+.brand-footer {
+    width: 100%;
+    border-top: 1px solid rgba(23, 18, 15, 0.08);
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-footer p {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(23, 18, 15, 0.4);
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+/* 반응형 모바일 최적화 */
+@media (max-width: 1200px) {
+    .edge-trees {
+        width: 150px;
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 900px) {
+    .edge-trees {
+        display: none;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .hanja-section {
+        gap: 40px;
+    }
 }

@@ -144,6 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.addEventListener('mouseleave', () => customCursor.classList.remove('expanded'));
     }
 
+    // 브랜드 페이지 헤더 및 기타 인터랙티브 링크 호버 인터랙션
+    const interactiveElements = document.querySelectorAll('.brand-header, .back-link, .brand-website, .dropdown-item');
+    interactiveElements.forEach(el => {
+        if (customCursor) {
+            el.addEventListener('mouseenter', () => customCursor.classList.add('expanded'));
+            el.addEventListener('mouseleave', () => customCursor.classList.remove('expanded'));
+        }
+    });
+
     // 작가 소개 페이지 (artist.html) 전용 휠(트랙패드 스와이프) 인터랙션 - 멀티 스텝
     const artistContainer = document.querySelector('.artist-scroll-container');
     if (artistContainer) {

@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand - Hinok</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Cormorant & Nanum Myeongjo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400&family=Cormorant+Infant:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Spoqa Han Sans Neo -->
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
 </head>
-<body class="light-mode">
+<body class="light-mode brand-page">
     <!-- 상단 고정 네비게이션 (서브 페이지 상시 노출) -->
     <nav class="global-nav scrolled">
         <div class="menu-trigger" id="menu-trigger">
             <div class="leaf-icon">
                 <img src="leap.svg" alt="leaf icon">
             </div>
-            <span class="trigger-text">i want more</span>
+            <span class="trigger-text">more about..</span>
         </div>
         <div class="nav-dropdown">
             <ul class="dropdown-list">
                 <li><a href="brand.html" class="dropdown-item">브랜드 설명</a></li>
-                <li><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
+                <li style="display: none;"><a href="project.html" class="dropdown-item">프로젝트 소개</a></li>
                 <li><a href="artist.html" class="dropdown-item">작가 소개</a></li>
             </ul>
         </div>
@@ -30,8 +34,107 @@
     <!-- 좌측 상단 Back 버튼 -->
     <a href="index.html" class="back-link" style="position: fixed; top: 40px; left: 40px; color: #17120f; text-decoration: none; opacity: 0.3; font-size: 14px; letter-spacing: 0.05em; z-index: 10001; padding: 20px; margin: -20px; transition: opacity 0.3s ease;">← go to Home</a>
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <h1 style="font-weight: 300; letter-spacing: 0.1em; opacity: 0.8;">브랜드 설명 페이지 (준비 중)</h1>
+    <!-- 브랜드 페이지 스크롤 컨테이너 -->
+    <div class="brand-scroll-container">
+        <!-- 배경 그리드 라인들 -->
+        <div class="brand-grid-lines">
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+        </div>
+
+        <!-- 가장자리 디자인 요소 (treegrey.png) -->
+        <div class="edge-trees left-tree"></div>
+        <div class="edge-trees right-tree"></div>
+
+        <div class="brand-content-wrapper">
+            <!-- 상단 헤더: About hinok -->
+            <a href="index.html" class="brand-header">
+                <span class="about-text">About</span>
+                <img src="logo_dark.svg" alt="hinok Logo" class="brand-logo-img">
+            </a>
+
+            <!-- 한자 블록: 바랄 희 希, 푸를 녹 綠 -->
+            <div class="hanja-section">
+                <div class="hanja-item">
+                    <span class="korean">바랄 희</span>
+                    <span class="chinese">希</span>
+                </div>
+                <div class="hanja-item">
+                    <span class="korean">푸를 녹</span>
+                    <span class="chinese">綠</span>
+                </div>
+            </div>
+
+            <!-- 브랜드 설명 문구 -->
+            <div class="brand-intro">
+                <p>희녹은 편백을 기반으로 자연의 감각을 일상에 전하는 브랜드입니다.</p>
+                <p>향, 원료, 사용 방식에 대한 섬세한 접근을 통해 자연과 사람의 건강한 관계를 고민합니다.</p>
+            </div>
+
+            <!-- 브랜드 홈페이지 링크 -->
+            <a href="https://hinok.life/?srsltid=AfmBOooUSNYGV4cRjM-k9DvVzDbO35gslKFejuPf3CXky1lGOsgz96mj" target="_blank" class="brand-website" style="text-decoration: none;">
+                <span class="web-text">브랜드 홈페이지</span>
+            </a>
+
+            <!-- 부드럽게 흐릿한 구분 점 -->
+            <div class="blur-divider divider-1"></div>
+
+            <!-- hinok Products Used 섹션 -->
+            <section class="products-section">
+                <h2 class="section-title">hinok Products Used</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="product1.png" alt="Calm & Balance Room Spray" class="product-img">
+                        </div>
+                        <h3 class="product-name">Calm & Balance Room Spray</h3>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="product2.png" alt="Calm & Balance Hyangnang Kit" class="product-img">
+                        </div>
+                        <h3 class="product-name">Calm & Balance Hyangnang Kit</h3>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="product3.png" alt="The Spray Set" class="product-img">
+                        </div>
+                        <h3 class="product-name">The Spray Set</h3>
+                    </div>
+                </div>
+                <p class="products-desc">위 제품들을 활용하여 전시장 안에 은은한 편백 향을 조성하였습니다.</p>
+            </section>
+
+            <!-- 부드럽게 흐릿한 구분 점 -->
+            <div class="blur-divider divider-2"></div>
+
+            <!-- The Journey of hinok 섹션 -->
+            <section class="journey-section">
+                <h2 class="section-title">The Journey of hinok</h2>
+                <div class="journey-content">
+                    <p>희녹의 여정은 건강한 라이프가 지속될 수 있도록, 믿을 수 있는 자연 원료를 찾는 것에서 출발하며</p>
+                    <p>그 답을 유네스코 지정 세계자연유산인 ‘제주’에서 찾았습니다.</p>
+                    
+                    <p class="para-gap">제주는 화산 분출 활동으로 형성된 섬으로, 통기성과 투수성이 뛰어난 화산회토와</p>
+                    <p>천연 암반이 걸러낸 깨끗한 지하수가 흐르는 청정한 자연환경을 지니고 있습니다.</p>
+                    
+                    <p class="para-gap">이처럼 천혜의 환경이 숨 쉬는 제주에서 자란 편백나무를 전 제품의 핵심 원료로 사용합니다.</p>
+                    <p>제주 한라산 아래 위치한 희녹의 자체 연구소를 중심으로</p>
+                    <p>원료사, 제조사 등 전문 기관과 함께 핵심 원료인 ‘편백’을 체계적으로 연구하며,</p>
+                    <p>계절에 따라 향과 효능이 달라질 수 있는</p>
+                    <p>자연 원료의 고유한 특성을 전문적으로 관리하고 제품에 담아내고 있습니다.</p>
+                </div>
+            </section>
+
+            <!-- 하단 푸터 -->
+            <footer class="brand-footer">
+                <p>EWHA 2026 MAYDAY Exhibition</p>
+                <p>Media Art_Team hinok</p>
+            </footer>
+        </div>
     </div>
 
     <!-- 커스텀 커서 시스템 -->
