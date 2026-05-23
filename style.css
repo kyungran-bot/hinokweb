@@ -1104,13 +1104,13 @@ html body.light-mode .cursor-trail {
     opacity: 0 !important;
 }
 
-/* 첫 번째 조각을 #0A2E37 색상의 원형으로 설정하고, 가장자리로 갈수록 투명해지도록 radial-gradient와 블러 적용 */
+/* 첫 번째 조각을 명도가 밝고 연한 색상의 원형으로 설정하고, 가장자리로 갈수록 투명해지도록 radial-gradient와 블러 적용 */
 html body.light-mode .cursor-piece:first-child {
     display: block !important;
     visibility: visible !important;
-    opacity: 0.95 !important;
+    opacity: 0.8 !important;
     background-image: none !important;
-    background: radial-gradient(circle, rgba(10, 46, 55, 1) 0%, rgba(10, 46, 55, 0.4) 60%, rgba(10, 46, 55, 0) 100%) !important;
+    background: radial-gradient(circle, rgba(90, 115, 110, 0.8) 0%, rgba(90, 115, 110, 0.3) 60%, rgba(90, 115, 110, 0) 100%) !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
     border-radius: 50% !important;
@@ -1126,7 +1126,7 @@ html body.light-mode .cursor-piece:first-child {
 html body.light-mode .custom-cursor.expanded .cursor-piece:first-child {
     width: 44px !important;
     height: 44px !important;
-    background: radial-gradient(circle, rgba(10, 46, 55, 0.8) 0%, rgba(10, 46, 55, 0.2) 60%, rgba(10, 46, 55, 0) 100%) !important;
+    background: radial-gradient(circle, rgba(90, 115, 110, 0.5) 0%, rgba(90, 115, 110, 0.15) 60%, rgba(90, 115, 110, 0) 100%) !important;
 }
 
 
