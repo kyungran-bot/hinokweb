@@ -783,9 +783,9 @@
                     const caption = captionEl ? captionEl.textContent.trim() : '';
                     
                     if (caption === 'The sunlight when pruning') {
-                        // 동영상 로드 (IMG_9083.MOV)
+                        // 동영상 로드 (sunlight.MOV)
                         const video = document.createElement('video');
-                        video.src = 'IMG_9083.MOV';
+                        video.src = 'sunlight.MOV';
                         video.loop = true;
                         video.muted = true;
                         video.autoplay = true;
@@ -804,9 +804,9 @@
                         mainBox.appendChild(video);
                         video.play().catch(err => console.log('Autoplay failed:', err));
                     } else if (caption === 'Forest_interaction') {
-                        // 동영상 로드 (IMG_9103.mov)
+                        // 동영상 로드 (forest.MOV)
                         const video = document.createElement('video');
-                        video.src = 'IMG_9103.mov';
+                        video.src = 'forest.MOV';
                         video.loop = true;
                         video.muted = true;
                         video.autoplay = true;
