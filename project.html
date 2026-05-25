@@ -787,6 +787,8 @@
                         const video = document.createElement('video');
                         video.src = 'IMG_9083.MOV';
                         video.loop = true;
+                        video.muted = true;
+                        video.autoplay = true;
                         video.playsInline = true;
                         video.style.cursor = 'pointer';
                         
@@ -800,11 +802,14 @@
                         });
                         
                         mainBox.appendChild(video);
+                        video.play().catch(err => console.log('Autoplay failed:', err));
                     } else if (caption === 'Forest_interaction') {
                         // 동영상 로드 (IMG_9103.mov)
                         const video = document.createElement('video');
                         video.src = 'IMG_9103.mov';
                         video.loop = true;
+                        video.muted = true;
+                        video.autoplay = true;
                         video.playsInline = true;
                         video.style.cursor = 'pointer';
                         video.style.objectFit = 'contain'; // 자르지 않고 풀샷으로 비율 유지 노출
@@ -820,6 +825,7 @@
                         
                         mainBox.style.backgroundColor = 'transparent'; // 영상 뒤 회색 박스 지우기 (투명화)
                         mainBox.appendChild(video);
+                        video.play().catch(err => console.log('Autoplay failed:', err));
                     } else if (caption === 'Cypress Terrarium') {
                         // 이미지 로드 (terra.png)
                         const newImg = document.createElement('img');
