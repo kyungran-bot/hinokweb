@@ -169,6 +169,33 @@
             letter-spacing: -0.01em;
         }
 
+        /* Forest Interaction Web 바로가기 링크 스타일 */
+        .forest-web-link-container {
+            margin: -10px 0 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 880px;
+        }
+
+        .forest-web-link {
+            font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #062B32;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(6, 43, 50, 0.3);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            letter-spacing: -0.01em;
+        }
+
+        .forest-web-link:hover {
+            color: #17120f;
+            border-bottom-color: rgba(23, 18, 15, 0.8);
+            transform: translateY(-2px);
+        }
+
         /* ========== Section Separator ========== */
         .section-separator {
             display: flex;
@@ -669,6 +696,13 @@
                     <img src="IMG_9069.png" alt="Main Project Default">
                 </div>
 
+                <!-- Forest_interaction web 바로가기 링크 (기본적으로 숨김) -->
+                <div class="forest-web-link-container" style="display: none;">
+                    <a href="https://cute-granita-926fdf.netlify.app" target="_blank" class="forest-web-link">
+                        Forest_interaction web 바로가기 →
+                    </a>
+                </div>
+
                 <!-- 설명 텍스트 -->
                 <div class="media-section-desc">
                     <p>햇빛의 온기를 담은 인터랙션과 생동감 넘치는 편백 숲의 교감을 지나, 직접 흙을 일궈보게 하는</p>
@@ -749,6 +783,20 @@
             const section = thumb.closest('.media-section');
             const mainBox = section ? section.querySelector('.media-main-box') : null;
             const allThumbs = grid.querySelectorAll('.media-thumb');
+            const captionEl = thumb.querySelector('.media-thumb-caption');
+            const caption = captionEl ? captionEl.textContent.trim() : '';
+
+            // main-grid 관련 바로가기 링크 노출 처리
+            if (grid.id === 'main-grid') {
+                const forestLink = document.querySelector('.forest-web-link-container');
+                if (forestLink) {
+                    if (!isSelected && caption === 'Forest_interaction') {
+                        forestLink.style.display = 'block';
+                    } else {
+                        forestLink.style.display = 'none';
+                    }
+                }
+            }
 
             if (isSelected) {
                 // 1. 이미 선택된 걸 다시 누르면 선택 해제 (모두 복원)
@@ -779,8 +827,6 @@
                 if (mainBox) {
                     mainBox.innerHTML = ''; // 기존 미디어(기본 이미지 등) 제거
                     mainBox.style.backgroundColor = ''; // 기본 배경색으로 리셋
-                    const captionEl = thumb.querySelector('.media-thumb-caption');
-                    const caption = captionEl ? captionEl.textContent.trim() : '';
                     
                     if (caption === 'The sunlight when pruning') {
                         // 동영상 로드 (sunlight.MOV)
