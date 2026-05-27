@@ -496,7 +496,7 @@ body.light-mode .dropdown-item {
 }
 
 .circulation {
-    left: -120px;
+    left: -125px;
     top: 50%;
     transform: translateY(-50%);
 }
