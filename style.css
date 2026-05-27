@@ -2024,6 +2024,228 @@ body.brand-page .section-title {
 }
 
 /* ========================================================== */
+/* [모바일 및 태블릿 디바이스 최적화 - GNB 및 커서 비활성화] */
+/* ========================================================== */
+@media (max-width: 1024px) {
+    /* 터치 디바이스에서는 마우스 커서 숨김 해제 및 JS 기반 커스텀 커서 비활성화 */
+    * {
+        cursor: auto !important;
+    }
+    .custom-cursor,
+    .cursor-trail {
+        display: none !important;
+    }
+    
+    /* GNB 크기 및 터치 영역 최적화 */
+    .global-nav {
+        padding: 24px 30px !important;
+    }
+    .menu-trigger {
+        gap: 10px !important;
+    }
+    .trigger-text {
+        font-size: 13px !important;
+    }
+}
+
+/* ========================================================== */
+/* [모바일 디바이스 최적화 - index.html / brand.html / project.html / artist.html] */
+/* ========================================================== */
+@media (max-width: 768px) {
+    /* 0. 공통 모바일 텍스트 및 레이아웃 최적화 */
+    br {
+        content: " ";
+        display: inline;
+    }
+    
+    .back-link {
+        top: 20px !important;
+        left: 20px !important;
+        font-size: 12px !important;
+    }
+
+    /* 1. 메인 페이지 (index.html) 모바일 최적화 */
+    .logo {
+        max-width: 75% !important;
+    }
+    
+    .intro-text-top {
+        padding: 120px 24px 0 !important;
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+    }
+    
+    .circulation-wrap {
+        height: 480px !important;
+        margin: 80px 0 !important;
+    }
+    
+    /* 순환 애니메이션 레이아웃 모바일 크기 스케일 다운 */
+    .interaction-circles {
+        transform: translate(-50%, -50%) scale(0.55) !important;
+    }
+    
+    .intro-text-bottom {
+        padding: 0 24px !important;
+        margin-bottom: 60px !important;
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+    }
+    
+    .exhibition-flow {
+        padding-bottom: 40px !important;
+    }
+    
+    .flow-title-wrap {
+        height: 120px !important;
+        margin-bottom: 40px !important;
+    }
+    
+    .flow-title {
+        font-size: 26px !important;
+        letter-spacing: 4px !important;
+    }
+    
+    .leap-bg {
+        width: 250px !important;
+    }
+    
+    /* 지그재그 전시 경로 레이아웃 모바일 크기 스케일 다운 및 여백 압축 */
+    .flow-path-container {
+        width: 900px !important;
+        left: 50% !important;
+        transform: translateX(-50%) scale(0.4) !important;
+        transform-origin: top center !important;
+        height: 1100px !important;
+        margin-bottom: -640px !important;
+    }
+
+    /* 2. 브랜드 소개 페이지 (brand.html) 모바일 최적화 */
+    .brand-header {
+        margin-top: 80px !important;
+        margin-bottom: 40px !important;
+    }
+    .about-text {
+        font-size: 15px !important;
+    }
+    .brand-logo-img {
+        height: 28px !important;
+    }
+    .hanja-section {
+        margin-bottom: 50px !important;
+        gap: 30px !important;
+    }
+    .hanja-item .chinese {
+        font-size: 52px !important;
+    }
+    .brand-intro {
+        margin-bottom: 60px !important;
+    }
+    .brand-intro p {
+        font-size: 14px !important;
+        line-height: 1.9 !important;
+        padding: 0 20px !important;
+    }
+    .brand-website {
+        font-size: 13px !important;
+    }
+    .divider-1, .divider-2 {
+        margin-top: 60px !important;
+        margin-bottom: 60px !important;
+    }
+    .products-section {
+        margin-top: 50px !important;
+    }
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+        padding: 0 20px !important;
+    }
+    .product-card {
+        max-width: 260px !important;
+        margin: 0 auto !important;
+    }
+    .product-name {
+        font-size: 14px !important;
+    }
+    .products-desc {
+        font-size: 12px !important;
+        margin-top: 25px !important;
+        padding: 0 20px !important;
+    }
+    .journey-section {
+        margin-top: 50px !important;
+        padding: 0 20px !important;
+    }
+    .journey-content p {
+        font-size: 13px !important;
+        line-height: 2.0 !important;
+    }
+
+    /* 3. 프로젝트 소개 페이지 (project.html) 모바일 최적화 */
+    .project-title-text {
+        font-size: 32px !important;
+        line-height: 38px !important;
+    }
+    .project-intro {
+        margin-bottom: 40px !important;
+        padding: 0 20px !important;
+    }
+    .project-intro p {
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+    }
+    .media-thumbnails-grid {
+        gap: 12px !important;
+        padding: 0 16px !important;
+        margin-bottom: 16px !important;
+    }
+    .media-thumb-caption {
+        font-size: 11px !important;
+    }
+    .media-main-box {
+        margin-bottom: 20px !important;
+        border-radius: 4px !important;
+    }
+    .media-section-desc {
+        padding: 0 20px !important;
+    }
+    .media-section-desc p {
+        font-size: 13px !important;
+        line-height: 1.8 !important;
+    }
+    .forest-web-link-container {
+        margin: 0 0 20px !important;
+    }
+    .forest-web-link {
+        font-size: 12px !important;
+    }
+
+    /* 4. 작가 소개 페이지 (artist.html) 모바일 최적화 */
+    .artist-center-row {
+        font-size: 16px !important;
+        gap: 12px !important;
+    }
+    .artist-name {
+        font-size: 20px !important;
+    }
+    .bracket {
+        font-size: 40px !important;
+    }
+    .artist-details {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 0 24px !important;
+    }
+    .details-left, .details-right {
+        text-align: center !important;
+    }
+    .details-left p, .details-right p {
+        font-size: 13px !important;
+    }
+}
+
+/* ========================================================== */
 /* [고해상도 대화면 디스플레이 성능 최적화] */
 /* ========================================================== */
 @media screen and (min-width: 1920px) {
